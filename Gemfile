@@ -46,5 +46,9 @@ group :development do
 
   gem 'quiet_assets' #Quiet Assets turns off the Rails asset pipeline log. This suppresses messages in your development log.
   gem 'better_errors' #Replaces standard rails errors with better messages. Usable outside of Rails in any Rack app.
-  gem 'binding_of_callar' #Gem which gives more functionality to better errors. 
+  gem 'binding_of_caller' #Gem which gives more functionality to better errors.
 end
+
+gem 'cocoon' #Helps set up nested attributes.
+
+gem 'sorcery'
