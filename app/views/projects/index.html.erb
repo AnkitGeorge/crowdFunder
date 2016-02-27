@@ -1,10 +1,17 @@
+<%= form_tag projects_path, method: :get, remote: true, id:"search" do%>
+  <%= label_tag :title, "Project Search" %>
+  <%= text_field_tag :title, params[:title] %>
+  <%= submit_tag "Submit" %>
+<% end %>
+<!-- form for project search -->
+
 <h1>Projects</h1>
   <%= link_to 'New Project', new_project_path %>
-  <div class="project-list">
+  <div class="project_list">
     <%= render @projects %>
   </div>
   <% if @projects.any? %>
-   
+
   <% else %>
    <h2>No projects yet</h2>
   <% end %>

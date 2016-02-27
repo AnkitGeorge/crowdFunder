@@ -4,7 +4,19 @@ class ProjectsController < ApplicationController
   # you need to be logged in, except when viewing all projects, or a specific project show page.
 
   def index
-    @projects = Project.all
+    if params[:title]
+      @projects = Project.where("LOWER(title) LIKE LOWER(?)", "%#{params[:title]}%")
+      # query to search for projects.
+    else
+      @projects = Project.all
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+      #This code above specifies the ways in which we are able to respond.
+    end
+    
   end
 
   def new
