@@ -1,0 +1,10 @@
+<% if current_user %>
+  <% form_for(@comment) do |f| %>
+    <h2>Post a comment:</h2>
+    <div>
+      <%= f.label :body_text %>
+      <%= f.text_field :body_text %>
+    </div>
+    <%= f.submit 'Post Comment!' %>
+  <% end  %>
+<% end %>

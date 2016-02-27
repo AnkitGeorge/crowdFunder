@@ -171,7 +171,6 @@ DEPENDENCIES
   binding_of_caller
   byebug
   cocoon
-  coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   quiet_assets
