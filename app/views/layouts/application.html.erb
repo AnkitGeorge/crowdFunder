@@ -10,9 +10,10 @@
 
   <div id="nav">
      <% if current_user %>
+     Signed in as: <%= current_user.username.capitalize %>
        <%= link_to "Logout", :logout, method: :post %>
      <% else %>
-       <%= link_to "Register", new_user_path %> |
+       <%= link_to "Register", new_user_path %>
        <%= link_to "Login", :login %>
      <% end %>
   </div>
@@ -21,7 +22,7 @@
      <p id="notice"><%= flash[:notice] %></p>
      <p id="alert"><%= flash[:alert] %></p>
   </div>
-
+  <h1>crowdFunder</h1>
 <%= yield %>
 
 </body>

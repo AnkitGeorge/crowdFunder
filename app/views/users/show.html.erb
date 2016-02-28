@@ -1,7 +1,24 @@
 <h1>User information</h1>
-<h3 class="userinfo">Username: <%= @user.username%></h1>
+<h3 class="userinfo"> Username: <%= current_user.username %></h3>
 
-<h3 class="userinfo">Email: <%= @user.email%> </h4>
+<h4 class="userinfo"> Email: <%= current_user.email %> </h4>
+
+  <div>
+    <h2>List of Pledged Products</h2>
+
+    <% current_user.pledged_projects.each do |project| %>
+    <%= project.title %>
+    <% end %>
+  </div>
+
+  <div>
+    <h2>List of Owned Projects</h2>
+      <ul>
+      <% current_user.owned_projects.each do |project| %>
+      <li> <%= project.title %> </li>
+      <% end %>
+    </ul>
+  </div>
 
 
 <p><%= link_to 'Back', projects_path %></p>

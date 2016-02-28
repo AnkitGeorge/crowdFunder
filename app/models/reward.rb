@@ -4,4 +4,7 @@ class Reward < ActiveRecord::Base
   has_many :users, through: :pledges
   #has_one :pledge
   #has_one :project, through: :pledge #you can only get a reward by pledging
+
+  validates :title, :min_requirement, presence: true
+  validates :min_requirement, numericality: {greater_than: 0}
 end
