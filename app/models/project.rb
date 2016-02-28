@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
    end
 
    def filter
-     return.self.rewards.select{|reward| reward.current_quantity > 0}.sort_by(&:min_requirement)
+     return self.rewards.select{|reward| reward.current_quantity > 0}.sort_by(&:min_requirement)
    end
 
 end
