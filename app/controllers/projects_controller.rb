@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
       format.js
       #This code above specifies the ways in which we are able to respond.
     end
-    
+
   end
 
   def new

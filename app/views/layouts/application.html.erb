@@ -9,13 +9,16 @@
 <body>
 
   <div id="nav">
-     <% if current_user %>
-     Signed in as: <%= current_user.username.capitalize %>
-       <%= link_to "Logout", :logout, method: :post %>
-     <% else %>
-       <%= link_to "Register", new_user_path %>
-       <%= link_to "Login", :login %>
-     <% end %>
+    <a href="/projects">Browse Projects</a>
+    <a href="/projects/new">Create Project</a>
+      <% if current_user %>
+         Signed in as: <%= current_user.username.capitalize %>
+           <%= link_to "Profile Page", user_path(current_user.id) %>
+           <%= link_to "Logout", :logout, method: :post %>
+         <% else %>
+           <%= link_to "Register", new_user_path %>
+           <%= link_to "Login", :login %>
+      <% end %>
   </div>
 
   <div>

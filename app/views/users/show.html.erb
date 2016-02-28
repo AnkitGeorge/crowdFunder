@@ -1,13 +1,18 @@
 <h1>User information</h1>
+
+<!-- This show the user's info: The username and the email -->
+
 <h3 class="userinfo"> Username: <%= current_user.username %></h3>
 
 <h4 class="userinfo"> Email: <%= current_user.email %> </h4>
 
+<!-- This shows the user's list of pledged products plus owned projects -->
   <div>
     <h2>List of Pledged Products</h2>
 
     <% current_user.pledged_projects.each do |project| %>
     <%= project.title %>
+    <%= link_to project.title, project_path(project) %>
     <% end %>
   </div>
 
@@ -15,10 +20,10 @@
     <h2>List of Owned Projects</h2>
       <ul>
       <% current_user.owned_projects.each do |project| %>
-      <li> <%= project.title %> </li>
+      <li> <%= link_to project.title, project_path(project) %> </li>
       <% end %>
     </ul>
   </div>
 
-
+<!-- Button that takes you to the project index page -->
 <p><%= link_to 'Back', projects_path %></p>

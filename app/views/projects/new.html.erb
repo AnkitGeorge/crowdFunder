@@ -18,6 +18,7 @@
     <div>
         <%= f.label :project_end_date %>
         <%= f.date_field :project_end_date %>
+        <%= f.hidden_field :project_end_date, :value => Time.new%>
     </div>
 
     <%= f.submit "Create Project" %>

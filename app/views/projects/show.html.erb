@@ -1,3 +1,21 @@
 <h1 class="project_name"><%= @project.title %></h1>
-<h3 class="project_owner"><%= @project.owner.username if @project.owner%></h3>
-<p class="project_description"><%= @project.description %></p>
+<h3 class="project_owner"> Project Owner: <%= @project.owner.username %> </h3>
+
+<p class = "project-description">
+  <h4>Description</h4>
+<%= @project.description %>
+  <br>
+  <br>
+  Project Ends On:
+  <%= @project.project_end_date.strftime("%b %d, %Y") %>
+
+  <!-- Check this later -->
+  <% if @project.comments.any? %>
+    <% @project.comments.each do |comment| %>
+   	  <p> <%= comment.user %> Says: <%= comment %> </p>
+      <% end %>
+    <% else %>
+      <p> No Comments Posted</p>
+  <%end %>
+
+</p>
