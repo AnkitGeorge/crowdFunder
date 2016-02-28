@@ -1,0 +1,22 @@
+<div class='nested-fields'>
+    <div>
+        <%= f.label :title, :class => "label-tag" %>
+   <%= f.text_field :title, :class => "label-text-field" %>
+    </div>
+    <div>
+        <%= f.label :description, :class => "label-tag"  %>
+   <%= f.text_field :description, :class => "label-text-field" %>
+    </div>
+    <div>
+        <%= f.label :quantity, :class => "label-tag"  %>
+   <%= f.number_field :quantity, :class => "label-text-field" %>
+    </div>
+    <div>
+        <%= f.label :min_requirement, "Min. Dollar Amount", :class => "label-tag"  %>
+   <%= f.number_field :min_requirement, :class => "label-text-field" %>
+    </div>
+    <div>
+   <%= f.label :image_url, "Image URL", :class => "label-tag"   %>
+   <%= f.text_field :image_url, :class => "label-text-field" %>
+ </div>
+</div>

@@ -1,3 +1,4 @@
+<div><%= image_tag @project.image_url %></div>
 <h1 class="project_name"><%= @project.title %></h1>
 <h3 class="project_owner"> Project Owner: <%= @project.owner.username %> </h3>
 
@@ -8,21 +9,36 @@
   <br>
   Project Ends On:
   <%= @project.project_end_date.strftime("%b %d, %Y") %>
+  <%= @project.funding_percent %>
+  <%= @project.total_funding.to_i %>
+  <%= @project.funding_goal %>
 
-  <%= render :partial => 'pledges/pledges' %>
+
+  <%= render :partial => '/pledges/pledges' %>
 
   <p>Pledges</p>
-  <%@project.pledges.each do |pledge| %>
-    <p><%= pledge.dollar_amount %></p>
+  <% @project.pledges.each do |pledge| %>
+    <% if pledge.dollar_amount != nil %>
+      <p><%= pledge.dollar_amount %>.00 by <%= pledge.user.username %></p>
+    <% end  %>
   <% end  %>
 
-  <!-- Check this later -->
+  <p>Days left : <%= (@project_end_date - Time.now.to_datetime).round %></p>
+  <%= @project.pledging_users.count %> <%= @projects.pledging_users.count > 1 ? "Backers" : "Backer" %>
 
+  <% @projects.rewards.each do |reward| %>
+    <p>Reward: </p> <%= reward.title %> (<%= reward.current_quantity %> of <%= reward.quantity % left) %></p>
+    <p>Minimum Pledge: </p> <%= reward.min_requirement %>.00
+    <p>Description: </p> <%= reward.description %>
+  <% end %>
+  <!-- Check this later -->
 
   <% if @project.comments.any? %>
     <% @project.comments.each do |comment| %>
-       <p> <%= comment.user %> Says: <%= comment %> </p>
+       <p> <%= comment.user.username %> Says: <%= comment.body_text %> </p>
       <% end %>
     <% else %>
       <p> No Comments Posted</p>
   <%end %>
+
+  <%= render partial: '/comments/_form' %>
