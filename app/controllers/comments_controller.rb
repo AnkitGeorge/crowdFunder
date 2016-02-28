@@ -1,21 +1,20 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-  end
+  before_filter :ensure_logged_in, only: [:create, :destroy]
+  before_filter :load_project #check this method
 
   def show
     @comment = Comment.find(params[:id])
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @project.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
-      redirect_to project_url(@comment.project), notice: 'Your comment has been posted.'
+      redirect_to project_url(@project), notice: 'Your comment has been posted.'
       #test to see what happens when @comment.project in brackets is removed.
     else
-      redirect_to project_url(@comment.project), notice: 'Your comment was not saved. Please try again.'
+      redirect_to project_url(@project), notice: 'Your comment was not saved. Please try again.'
     end
 
   end
@@ -32,7 +31,11 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body_text, :user_id, :comment_id)
+    params.require(:comment).permit(:body_text, :user_id, :comment_id, :project_id)
   end
 
+  def load_project
+    @project = Project.find(params[:project_id])
+  end
+  
 end

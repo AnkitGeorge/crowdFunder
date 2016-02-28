@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_filter :require_login, except: [:index, :show]
+  # before_filter :require_login, except: [:index, :show]
   # you need to be logged in, except when viewing all projects, or a specific project show page.
 
   def index
@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @project.rewards.build
   end
 
   def create
@@ -36,12 +37,14 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    #@comment = Comment.new(user: current_user, project: @project)
+    @pledge = @project.pledges.build
+    @comment = Comment.new(user: current_user, project: @project)
   end
 
   private
   def project_params
-    params.require(:project).permit(:title, :description, :owner_id, :funding_goal, :project_end_date)
+    params.require(:project).permit(:title, :description, :owner_id, :funding_goal, :project_end_date,
+          rewards_attributes: [:id, :title, :description, :min_requirement, :quantity, :project_id, :_destroy])
   end
 
 end

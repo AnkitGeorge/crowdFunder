@@ -7,4 +7,8 @@ class Reward < ActiveRecord::Base
 
   validates :title, :min_requirement, presence: true
   validates :min_requirement, numericality: {greater_than: 0}
+
+  def current_quantity
+    return self.quantity - self.pledges.count
+  end
 end

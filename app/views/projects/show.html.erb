@@ -1,21 +1,28 @@
 <h1 class="project_name"><%= @project.title %></h1>
 <h3 class="project_owner"> Project Owner: <%= @project.owner.username %> </h3>
 
-<p class = "project-description">
-  <h4>Description</h4>
-<%= @project.description %>
+<p class = "project-description"> <h4>Description</h4>
+  <%= @project.description %>
+</p>
   <br>
   <br>
   Project Ends On:
   <%= @project.project_end_date.strftime("%b %d, %Y") %>
 
+  <%= render :partial => 'pledges/pledges' %>
+
+  <p>Pledges</p>
+  <%@project.pledges.each do |pledge| %>
+    <p><%= pledge.dollar_amount %></p>
+  <% end  %>
+
   <!-- Check this later -->
+
+
   <% if @project.comments.any? %>
     <% @project.comments.each do |comment| %>
-   	  <p> <%= comment.user %> Says: <%= comment %> </p>
+       <p> <%= comment.user %> Says: <%= comment %> </p>
       <% end %>
     <% else %>
       <p> No Comments Posted</p>
   <%end %>
-
-</p>

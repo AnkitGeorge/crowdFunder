@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root :to => 'projects#index'
   resources :sessions
   resources :users
+  #resources :pledges, through: :projects
   resources :pledges, only: [:index, :show, :create, :update, :destroy]
   resources :projects do
     resources :comments, only: [:show, :create, :destroy]
-  end 
+  end
 
   get 'login' => 'sessions#new', :as => :login
   post 'logout' => 'sessions#destroy', :as => :logout
