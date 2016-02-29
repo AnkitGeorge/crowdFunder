@@ -1,4 +1,5 @@
 class PledgesController < ApplicationController
+  before_filter :require_login, except: [:show]
   def new
     @pledge = Pledge.new
   end
@@ -8,6 +9,7 @@ class PledgesController < ApplicationController
   end
 
   def create
+
     @pledge = Pledge.new(pledge_params)
     @pledge.user = current_user
     @pledge.set_reward

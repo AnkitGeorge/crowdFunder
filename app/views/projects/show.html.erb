@@ -1,6 +1,6 @@
 <div><%= image_tag @project.image_url %></div>
 <h1 class="project_name"><%= @project.title %></h1>
-<h3 class="project_owner"> Project Owner: <%= @project.owner.username %> </h3>
+<h3 class="project_owner"> Project Owner: <%= link_to @project.owner.username, user_path %> </h3>
 
 <p class = "project-description"> <h4>Description</h4>
   <%= @project.description %>
