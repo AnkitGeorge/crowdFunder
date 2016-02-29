@@ -10,7 +10,7 @@
   <div>
     <h3>List of Pledged Projects</h3>
       <ul>
-        <% current_user.pledged_projects.each do |project| %>
+        <% @user.pledged_projects.each do |project| %>
         <li><%= link_to project.title, project_path(project) %></li>
         <% end %>
       </ul>
@@ -19,7 +19,7 @@
   <div>
     <h3>List of Owned Projects</h3>
       <ul>
-      <% current_user.owned_projects.uniq.each do |project| %>
+      <% @user.owned_projects.uniq.each do |project| %>
       <li> <%= link_to project.title, project_path(project) %> </li>
       <% end %>
     </ul>
@@ -28,7 +28,7 @@
   <h3>List of Rewards</h3>
 
     <ul>
-    <% current_user.rewards.uniq.each do |reward| %>
+    <% @user.rewards.uniq.each do |reward| %>
       <li>
         <%= link_to reward.title, project_path(reward.project) %>-
         <span><%= reward.description %></span>

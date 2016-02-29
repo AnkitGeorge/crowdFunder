@@ -8,24 +8,39 @@
 </head>
 <body>
 
-  <div id="nav">
-    <a href="/projects">Browse Projects</a>
-    <a href="/projects/new">Create Project</a>
-      <% if current_user %>
-         Signed in as: <%= current_user.username.capitalize %>
-           <%= link_to "Profile Page", user_path(current_user.id) %>
-           <%= link_to "Logout", :logout, method: :post %>
-         <% else %>
-           <%= link_to "Register", new_user_path %>
-           <%= link_to "Login", :login %>
+  <ul id="nav">
+    <!-- Link to see all projects -->
+    <h1><li class="nav-links>"><a class="nav-left" href="/projects">crowdFunder</a></li></li></h1>
+    <li class="nav-links"><a class="nav-left" href="/projects">Browse Projects</a></li>
+    <!-- Link to create a project -->
+    <li class="nav-links"><a class="nav-left" href="/projects/new">Create Project</a></li>
+    <!-- search bar -->
+    <li class="nav-links"><div class="nav-left">
+      <%= form_tag projects_path, method: :get, remote: true, id:"search" do%>
+        <%= label_tag :title, "Project Search" %>
+      <%= text_field_tag :title, params[:title] %>
+      <%= submit_tag "Search" %></div></li>
       <% end %>
+
+
   </div>
+    <!-- Log in links -->
+    <ul style="float:right;list-style-type:none;">
+      <% if current_user %>
+      <li class="nav-left">Signed in as: <%= current_user.username.capitalize %></li>
+      <p class="nav-left"><%= link_to "Profile Page", user_path(current_user.id) %></p>
+      <li class="nav-left"><%= link_to "Logout", :logout, method: :post %></li>
+      <% else %>
+      <li class="nav-left"><%= link_to "Register", new_user_path %></li>
+      <li class="nav-left"><%= link_to "Login", :login %></li>
+      <% end %>
+    </ul>
+  </ul>
 
   <div>
      <p id="notice"><%= flash[:notice] %></p>
      <p id="alert"><%= flash[:alert] %></p>
   </div>
-  <h1>crowdFunder</h1>
 <%= yield %>
 
 </body>
