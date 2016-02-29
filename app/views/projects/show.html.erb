@@ -7,27 +7,28 @@
 </p>
   <br>
   <br>
-  Project Ends On:
-  <%= @project.project_end_date.strftime("%b %d, %Y") %>
-  <%= @project.funding_percent %>
-  <%= @project.total_funding.to_i %>
-  <%= @project.funding_goal %>
+  <h2>Project Ends On:</h2>
+
+  <%= @project.project_end_date.strftime("%b %d, %Y") %><br>
+  <%= @project.funding_percent %><br>
+  <%= @project.total_funding.to_i %><br>
+  <%= @project.funding_goal %><br>
 
 
-  <%= render :partial => '/pledges/pledges' %>
+  <%= render :partial => 'pledges/pledges' %>
 
-  <p>Pledges</p>
+  <h2>Pledges</h2>
   <% @project.pledges.each do |pledge| %>
     <% if pledge.dollar_amount != nil %>
       <p><%= pledge.dollar_amount %>.00 by <%= pledge.user.username %></p>
     <% end  %>
   <% end  %>
 
-  <p>Days left : <%= (@project_end_date - Time.now.to_datetime).round %></p>
-  <%= @project.pledging_users.count %> <%= @projects.pledging_users.count > 1 ? "Backers" : "Backer" %>
 
-  <% @projects.rewards.each do |reward| %>
-    <p>Reward: </p> <%= reward.title %> (<%= reward.current_quantity %> of <%= reward.quantity % left) %></p>
+  <%= @project.pledging_users.count %> <%= @project.pledging_users.count > 1 ? "Backers" : "Backer" %>
+
+  <% @project.rewards.each do |reward| %>
+    <p>Reward: </p> <%= reward.title %> <%= reward.current_quantity %> of <%= reward.quantity %>left</p>
     <p>Minimum Pledge: </p> <%= reward.min_requirement %>.00
     <p>Description: </p> <%= reward.description %>
   <% end %>
@@ -41,4 +42,4 @@
       <p> No Comments Posted</p>
   <%end %>
 
-  <%= render partial: '/comments/_form' %>
+  <%= render partial: 'comments/form' %>

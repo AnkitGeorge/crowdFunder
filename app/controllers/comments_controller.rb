@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :ensure_logged_in, only: [:create, :destroy]
+  before_filter :require_login, except: [:index, :show]
   before_filter :load_project #check this method
 
   def show
@@ -37,5 +37,5 @@ class CommentsController < ApplicationController
   def load_project
     @project = Project.find(params[:project_id])
   end
-  
+
 end

@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, if: -> { new_record? || changes["password"] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
   validates :email, presence: true
-  validats :email, uniqueness: true
+  validates :email, uniqueness: true
 
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :pledges, only: [:index, :show, :create, :update, :destroy]
   resources :projects do
     resources :comments, only: [:show, :create, :destroy]
+    resources :rewards
   end
 
   get 'login' => 'sessions#new', :as => :login

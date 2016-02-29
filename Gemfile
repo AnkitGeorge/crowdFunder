@@ -48,7 +48,7 @@ group :development do
   gem 'better_errors' #Replaces standard rails errors with better messages. Usable outside of Rails in any Rack app.
   gem 'binding_of_caller' #Gem which gives more functionality to better errors.
 end
-
+gem 'mini_magick'
+gem 'carrierwave'
 gem 'cocoon' #Helps set up nested attributes.
-
 gem 'sorcery'

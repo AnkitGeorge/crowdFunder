@@ -1,7 +1,7 @@
 <div class="pledges">
   <h3>Submit a pledge!</h3>
 
-  <%= form_for @pledge.each do |f| %>
+  <%= form_for @pledge do |f| %>
       <%= f.label :dollar_amount, "Dollar Amount" %>
       <%= f.number_field :dollar_amount %>
       <%= f.hidden_field :project_id %>

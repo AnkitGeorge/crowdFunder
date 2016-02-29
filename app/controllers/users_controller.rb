@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_logged_in, only: [:show]
+  before_filter :require_login, except: [:show]
 
   def index
     @users = User.all
@@ -9,6 +9,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = current_user
+  end
   def create
     @user = User.new(user_params)
 
