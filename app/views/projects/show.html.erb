@@ -21,6 +21,8 @@
   <% @project.pledges.each do |pledge| %>
     <% if pledge.dollar_amount != nil %>
       <p><%= pledge.dollar_amount %>.00 by <%= pledge.user.username %></p>
+      <% else  %>
+      <p> No one has pledged yet</p>
     <% end  %>
   <% end  %>
 

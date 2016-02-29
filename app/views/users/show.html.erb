@@ -1,37 +1,36 @@
-<h1>User information</h1>
+<h2>User information</h2>
 
 <!-- This show the user's info: The username and the email -->
 
 <h3 class="userinfo"> Username: <%= @user.username %></h3>
 
-<h4 class="userinfo"> Email: <%= @user.email %> </h4>
+<h3 class="userinfo"> Email: <%= @user.email %> </h3>
 
-<!-- This shows the user's list of pledged products plus owned projects -->
+<!-- This shows the user's list of pledged projects -->
   <div>
-    <h2>List of Pledged Projects</h2>
-
-    <% current_user.pledged_projects.each do |project| %>
-    <%= project.title %>
-    <%= link_to project.title, project_path(project) %>
-    <% end %>
+    <h3>List of Pledged Projects</h3>
+      <ul>
+        <% current_user.pledged_projects.each do |project| %>
+        <li><%= link_to project.title, project_path(project) %></li>
+        <% end %>
+      </ul>
   </div>
-
+<!-- This shows the user's list of owned projects -->
   <div>
-    <h2>List of Owned Projects</h2>
+    <h3>List of Owned Projects</h3>
       <ul>
       <% current_user.owned_projects.uniq.each do |project| %>
       <li> <%= link_to project.title, project_path(project) %> </li>
       <% end %>
     </ul>
   </div>
-
+<!-- This shows the user's list of rewards -->
   <h3>List of Rewards</h3>
 
     <ul>
     <% current_user.rewards.uniq.each do |reward| %>
       <li>
-        <a href=<%= project_path(reward.project) %>><%= image_tag reward.image_url, class: "reward-thumbnail"%></a>
-        <%= link_to reward.name, project_path(reward.project) %>-
+        <%= link_to reward.title, project_path(reward.project) %>-
         <span><%= reward.description %></span>
       </li>
     <% end %>

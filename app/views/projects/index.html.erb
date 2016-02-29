@@ -3,5 +3,4 @@
   <%= text_field_tag :title, params[:title] %>
   <%= submit_tag "Submit" %>
 <% end %>
-
-<%= render @projects %>
+<div id='project_list'><%= render @projects %></div>
